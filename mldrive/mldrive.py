@@ -4,7 +4,10 @@ import json
 #from pandas.io.json import json_normalize
 import pickle
 
-class MLdrive:
+class mldrive:
+        def __init__(self):
+            pass
+
         def get_dataset(endpoint, key, return_type=None):
             """Retrieve data from the user given endpoint. All endpoints can be retrieved by using this function with 'datasets'
             as the endpoint parameter. 
@@ -103,7 +106,7 @@ class MLdrive:
             except Exception as exception:
                 return exception
 
-        def dataset_inbox(email,key):
+        def dataset_inbox(email, key):
             """Load dataframes that were sent to your inbox.
             
             :param email: email used for registration that corresponds with API key (string)
@@ -117,7 +120,7 @@ class MLdrive:
                 return exception
             
             
-        def send_model(email,key,exchange_key, model):
+        def send_model(email, key, exchange_key, model):
             """Send your model to another user via their exchange_key
             
             :param email: email used for registration that corresponds with API key (string)
@@ -132,7 +135,7 @@ class MLdrive:
             except Exception as exception:
                 return exception
             
-        def model_inbox(email,key):
+        def model_inbox(email, key):
             """Load models that were sent to your inbox.
             
             :param email: email used for registration that corresponds with API key (string)
@@ -144,7 +147,7 @@ class MLdrive:
             except Exception as exception:
                 return exception
             
-        def change_exchange_key(email,key,exchange_key, new_exchange_key):
+        def change_exchange_key(email, key, exchange_key, new_exchange_key):
             """Change your exchange key
             
             :param email: email used for registration that corresponds with API key (string)

@@ -1,7 +1,7 @@
 import setuptools
 setuptools.setup(
     name= "mldrive",
-    version="0.2.1",
+    version="1.0.7",
     author="mldrive",
     description='A Python wrapper for the MLdrive API. Functionality includes getting datasets, saving dataframes/models, loading dataframes/models, sending dataframes/models, recieving dataframes/models.',
   install_requires=[            
@@ -13,7 +13,8 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_dir={"": "src"},
-    packages=setuptools.find_packages(where="src"),
+    packages=setuptools.find_packages(),
     python_requires=">=3.6",
+    include_package_data=True
 )
+
