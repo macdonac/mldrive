@@ -95,9 +95,9 @@ class mldrive:
         def send_dataset(email,key,exchange_key, df):
             """Send your dataframe to another user via their exchange_key
             
-            :param email: the recepients email  (string)
+            :param email: the recipients email  (string)
             :param key:  your API key (string)
-            :param exchange_key:  the recepients exchange key (string)
+            :param exchange_key:  the recipients exchange key (string)
             :param df:  the dataframe you want to send (dataframe)
             :return: post response
             """
@@ -123,9 +123,9 @@ class mldrive:
         def send_model(email, key, exchange_key, model):
             """Send your model to another user via their exchange_key
             
-            :param email: the recepients email (string)
+            :param email: the recipients email (string)
             :param key:  your API key (string)
-            :param exchange_key:  the recepients exchange key (string)
+            :param exchange_key:  the recipients exchange key (string)
             :param model:  the model you want to send (dataframe)
             :return: post response
             """
