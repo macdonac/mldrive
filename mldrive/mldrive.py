@@ -30,18 +30,17 @@ class mldrive:
             except Exception as exception:
                 return exception
 
-        def save_data(data, email, key,  data_type=None):
+        def save_data(data, email, key):
             """Save the given dataframe to the server.  Note, your previously saved dataset will be overwritten.  
             
             :param df: dataframe that is being saved (dataframe)
             :param email: email used for registration that corresponds with API key (string)
             :param key:  your API key (string)
-            :param data_type: type of data you are storing. Options are a list  ('list') or DataFrame ('df'). Default is DataFrame so you can leave it blank if you just want a dataframe. (string)
             :return: post response
             """
             
             try:
-                if data_type.lower() == 'list':
+                if type(data) == list:
                         return requests.post('http://34.231.99.140/api/save_dataset/'+email+'/'+key, json=data)
                 else:
                         return requests.post('http://34.231.99.140/api/save_dataset/'+email+'/'+key, json=data.to_dict(orient='records') )
