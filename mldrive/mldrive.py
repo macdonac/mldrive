@@ -30,16 +30,22 @@ class mldrive:
             except Exception as exception:
                 return exception
 
-        def save_dataframe(df, email, key):
+        def save_data(data, email, key,  data_type=None):
             """Save the given dataframe to the server.  Note, your previously saved dataset will be overwritten.  
             
             :param df: dataframe that is being saved (dataframe)
             :param email: email used for registration that corresponds with API key (string)
             :param key:  your API key (string)
+            :param data_type: type of data you are storing. Options are a list  ('list') or DataFrame ('df'). Default is DataFrame so you can leave it blank if you just want a dataframe. (string)
             :return: post response
             """
+            
             try:
-                return requests.post('http://34.231.99.140/api/save_dataset/'+email+'/'+key, json=df.to_dict(orient='records') )
+                if data_type.lower() == 'list':
+                        return requests.post('http://34.231.99.140/api/save_dataset/'+email+'/'+key, json=data)
+                else:
+                        return requests.post('http://34.231.99.140/api/save_dataset/'+email+'/'+key, json=data.to_dict(orient='records') )
+                
             except(requests.exceptions.ChunkedEncodingError):
                 return 'Error: Invalid API Key or Email'
             except(AttributeError):
@@ -47,7 +53,7 @@ class mldrive:
             except Exception as exception:
                 return exception            
 
-        def get_my_dataset(email, key):
+        def get_my_data(email, key):
             """Load your last saved dataset.
             
             :param email: email used for registration that corresponds with API key (string)
@@ -63,12 +69,12 @@ class mldrive:
                 return exception
             
             
-        def post_model(email, key, model):
+        def save_model(model, email, key):
             """Save your scikit-learn model.
-            
+
+            :param model:  your machine learning model (Model)            
             :param email: email used for registration that corresponds with API key (string)
             :param key:  your API key (string)
-            :param model:  your machine learning model (Model)
             :return: post response
             """
             try:
@@ -92,7 +98,7 @@ class mldrive:
             except Exception as exception:
                 return exception
 
-        def send_dataset(email,key,exchange_key, df):
+        def send_data(email,key,exchange_key, df):
             """Send your dataframe to another user via their exchange_key
             
             :param email: the recipients email  (string)
@@ -102,7 +108,10 @@ class mldrive:
             :return: post response
             """
             try:
-                requests.post('http://34.231.99.140/api/send_dataset/{}/{}/{}'.format(key,email,exchange_key), json=df.to_dict(orient='records'))
+                if type(df) == list:
+                         requests.post('http://34.231.99.140/api/send_dataset/{}/{}/{}'.format(key,email,exchange_key), json=df)
+                else:
+                        requests.post('http://34.231.99.140/api/send_dataset/{}/{}/{}'.format(key,email,exchange_key), json=df.to_dict(orient='records'))
             except Exception as exception:
                 return exception
 
