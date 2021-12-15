@@ -25,10 +25,8 @@ class mldrive:
                     return pd.read_json(r.json()['result']).to_numpy()
                 elif return_type.lower() == 'dict':
                     return pd.read_json(r.json()['result']).to_dict()
-            except(json.decoder.JSONDecodeError):
-                return 'Error: Invalid API Key or Endpoint'
-            except Exception as exception:
-                return exception
+            except:
+                return r.content
 
         def save_data(data, email, key):
             """Save the given dataframe to the server.  Note, your previously saved dataset will be overwritten.  
@@ -41,16 +39,14 @@ class mldrive:
             
             try:
                 if type(data) == list:
-                        return requests.post('http://34.231.99.140/api/save_dataset/'+email+'/'+key, json=data)
+                        r = requests.post('http://34.231.99.140/api/save_dataset/'+email+'/'+key, json=data)
                 else:
-                        return requests.post('http://34.231.99.140/api/save_dataset/'+email+'/'+key, json=data.to_dict(orient='records') )
-                
-            except(requests.exceptions.ChunkedEncodingError):
-                return 'Error: Invalid API Key or Email'
+                        r = requests.post('http://34.231.99.140/api/save_dataset/'+email+'/'+key, json=data.to_dict(orient='records') )    
+                return 'Data Saved!'
             except(AttributeError):
-                return 'Error: First Parameter is not a DataFrame'
-            except Exception as exception:
-                return exception            
+                return 'Error: First Parameter is not a DataFrame or list'
+            except:
+                return r.content
 
         def get_my_data(email, key):
             """Load your last saved dataset.
@@ -62,10 +58,9 @@ class mldrive:
             try:
                 r = requests.get('http://34.231.99.140/api/get_dataset/'+email+'/'+key)
                 return pd.DataFrame.from_dict(r.json()['result'])  
-            except(json.decoder.JSONDecodeError):
-                return 'Error: Invalid API Key or Email'
-            except Exception as exception:
-                return exception
+            except:
+                return r.content
+
             
             
         def save_model(model, email, key):
@@ -78,12 +73,10 @@ class mldrive:
             """
             try:
                 files = {'file': pickle.dumps(model)}
-                if requests.post('http://34.231.99.140/api/save_model/{}/{}'.format(email, key), files=files):
-                    return 'ok!'
-                else:
-                    return 'Failed, check email-key combo. Make sure you are passing in a model object.'
-            except Exception as exception:
-                return exception    
+                r = requests.post('http://34.231.99.140/api/save_model/{}/{}'.format(email, key), files=files)
+                'Model Saved!'
+            except:
+                return r.content 
             
         def get_model(email, key):
             """Load your last saved model.
@@ -93,9 +86,10 @@ class mldrive:
             :return: Model
             """
             try:
-                return pickle.loads(requests.get('http://34.231.99.140/api/load_model/{}/{}'.format(email,key)).content)
-            except Exception as exception:
-                return exception
+                r = requests.get('http://34.231.99.140/api/load_model/{}/{}'.format(email,key)).content
+                return pickle.loads(r)
+            except:
+                return r
 
         def send_data(email,key,exchange_key, df):
             """Send your dataframe to another user via their exchange_key
@@ -108,11 +102,13 @@ class mldrive:
             """
             try:
                 if type(df) == list:
-                         requests.post('http://34.231.99.140/api/send_dataset/{}/{}/{}'.format(key,email,exchange_key), json=df)
+                         r = requests.post('http://34.231.99.140/api/send_dataset/{}/{}/{}'.format(key,email,exchange_key), json=df)
+                         return 'Data Sent!'
                 else:
-                        requests.post('http://34.231.99.140/api/send_dataset/{}/{}/{}'.format(key,email,exchange_key), json=df.to_dict(orient='records'))
+                        r = requests.post('http://34.231.99.140/api/send_dataset/{}/{}/{}'.format(key,email,exchange_key), json=df.to_dict(orient='records'))
+                        return 'Data Sent!'
             except Exception as exception:
-                return exception
+                return r.content
 
         def dataset_inbox(email, key):
             """Load dataframes that were sent to your inbox.
@@ -125,7 +121,7 @@ class mldrive:
                 r = requests.get('http://34.231.99.140/api/dataset_inbox/{}/{}'.format(email,key))
                 return pd.DataFrame(r.json()['result'])
             except Exception as exception:
-                return exception
+                return r.content
             
             
         def send_model(email, key, exchange_key, model):
@@ -139,9 +135,10 @@ class mldrive:
             """
             try:
                 files = {'file': pickle.dumps(model)}
-                return requests.post('http://34.231.99.140/api/send_model/{}/{}/{}'.format(key,email,exchange_key), files=files)
+                r = requests.post('http://34.231.99.140/api/send_model/{}/{}/{}'.format(key,email,exchange_key), files=files)
+                return 'Model Sent!'
             except Exception as exception:
-                return exception
+                return r.content
             
         def model_inbox(email, key):
             """Load models that were sent to your inbox.
@@ -151,9 +148,10 @@ class mldrive:
             :return: model (model)
             """
             try:
-                return pickle.loads(requests.get('http://34.231.99.140/api/model_inbox/{}/{}'.format(email,key)).content)
+                r = requests.get('http://34.231.99.140/api/model_inbox/{}/{}'.format(email,key)).content
+                return pickle.loads(r)
             except Exception as exception:
-                return exception
+                return r.content
             
         def change_exchange_key(email, key, exchange_key, new_exchange_key):
             """Change your exchange key
@@ -165,6 +163,7 @@ class mldrive:
             :return: post response
             """
             try:
-                requests.post('http://34.231.99.140/api/change_exchange_key/{}/{}/{}/{}'.format(email,key,exchange_key, new_exchange_key))
+                r = requests.post('http://34.231.99.140/api/change_exchange_key/{}/{}/{}/{}'.format(email,key,exchange_key, new_exchange_key))
+                return 'Exchange Key Changed!'
             except Exception as exception:
-                return exception               
+                return r.content           
