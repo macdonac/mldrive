@@ -1,8 +1,9 @@
 import setuptools
 setuptools.setup(
     name= "mldrive",
-    version="1.0.7",
+    version="1.0.10",
     author="mldrive",
+    url = "https://github.com/macdonac/mldrive"
     description='A Python wrapper for the MLdrive API. Functionality includes getting datasets, saving dataframes/models, loading dataframes/models, sending dataframes/models, recieving dataframes/models.',
   install_requires=[            
           'pandas',
