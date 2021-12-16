@@ -45,8 +45,8 @@ class mldrive:
                 return 'Data Saved!'
             except(AttributeError):
                 return 'Error: First Parameter is not a DataFrame or list'
-            except:
-                return r.content
+            except Exception as ex:
+                return ex
 
         def get_my_data(email, key):
             """Load your last saved dataset.
