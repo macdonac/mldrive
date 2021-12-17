@@ -18,7 +18,7 @@ class mldrive:
             :return:  data from given endpoint
             """
             try:
-                r = requests.get('http://34.231.99.140/api/' + endpoint + '/' + key)
+                r = requests.get('https://mldrive.io/api/' + endpoint + '/' + key)
                 if r.status_code != 200:
                     return r.content
                 elif return_type == None:
@@ -41,9 +41,9 @@ class mldrive:
 
             try:
                 if type(data) == list:
-                        r = requests.post('http://34.231.99.140/api/save_dataset/'+email+'/'+key, json=data)
+                        r = requests.post('https://mldrive.io/api/save_dataset/'+email+'/'+key, json=data)
                 else:
-                        r = requests.post('http://34.231.99.140/api/save_dataset/'+email+'/'+key, json=data.to_dict(orient='records') )    
+                        r = requests.post('https://mldrive.io/api/save_dataset/'+email+'/'+key, json=data.to_dict(orient='records') )    
 
                 if r.status_code != 200:
                     return r.content
@@ -62,7 +62,7 @@ class mldrive:
             :return: dataframe
             """
             try:
-                r = requests.get('http://34.231.99.140/api/get_dataset/'+email+'/'+key)
+                r = requests.get('https://mldrive.io/api/get_dataset/'+email+'/'+key)
                 if r.status_code != 200:
                     return r.content
                 else:
@@ -81,7 +81,7 @@ class mldrive:
             """
             try:
                 files = {'file': pickle.dumps(model)}
-                r = requests.post('http://34.231.99.140/api/save_model/{}/{}'.format(email, key), files=files)
+                r = requests.post('https://mldrive.io/api/save_model/{}/{}'.format(email, key), files=files)
                 if r.status_code != 200:
                     return r.content
                 else:
@@ -97,7 +97,7 @@ class mldrive:
             :return: Model
             """
             try:
-                r = requests.get('http://34.231.99.140/api/load_model/{}/{}'.format(email,key))
+                r = requests.get('https://mldrive.io/api/load_model/{}/{}'.format(email,key))
                 if r.status_code != 200:
                     return r.content
                 else:
@@ -116,13 +116,13 @@ class mldrive:
             """
             try:
                 if type(df) == list:
-                        r = requests.post('http://34.231.99.140/api/send_dataset/{}/{}/{}'.format(key,email,exchange_key), json=df)
+                        r = requests.post('https://mldrive.io/api/send_dataset/{}/{}/{}'.format(key,email,exchange_key), json=df)
                         if r.status_code != 200:
                             return r.content
                         else:
                             return 'Data Sent!'
                 else:
-                        r = requests.post('http://34.231.99.140/api/send_dataset/{}/{}/{}'.format(key,email,exchange_key), json=df.to_dict(orient='records'))
+                        r = requests.post('https://mldrive.io/api/send_dataset/{}/{}/{}'.format(key,email,exchange_key), json=df.to_dict(orient='records'))
                         if r.status_code != 200:
                             return r.content
                         else:
@@ -138,7 +138,7 @@ class mldrive:
             :return: dataframe (dataframe)
             """
             try:
-                r = requests.get('http://34.231.99.140/api/dataset_inbox/{}/{}'.format(email,key))
+                r = requests.get('https://mldrive.io/api/dataset_inbox/{}/{}'.format(email,key))
                 if r.status_code != 200:
                     return r.content
                 else:
@@ -157,7 +157,7 @@ class mldrive:
             """
             try:
                 files = {'file': pickle.dumps(model)}
-                r = requests.post('http://34.231.99.140/api/send_model/{}/{}/{}'.format(key,email,exchange_key), files=files)
+                r = requests.post('https://mldrive.io/api/send_model/{}/{}/{}'.format(key,email,exchange_key), files=files)
                 if r.status_code != 200:
                     return r.content
                 else:
@@ -173,7 +173,7 @@ class mldrive:
             :return: model (model)
             """
             try:
-                r = requests.get('http://34.231.99.140/api/model_inbox/{}/{}'.format(email,key))
+                r = requests.get('https://mldrive.io/api/model_inbox/{}/{}'.format(email,key))
                 if r.status_code != 200:
                     return r.content
                 else:
@@ -191,7 +191,7 @@ class mldrive:
             :return: post response
             """
             try:
-                r = requests.post('http://34.231.99.140/api/change_exchange_key/{}/{}/{}/{}'.format(email,key,exchange_key, new_exchange_key))
+                r = requests.post('https://mldrive.io/api/change_exchange_key/{}/{}/{}/{}'.format(email,key,exchange_key, new_exchange_key))
                 if r.status_code != 200:
                     return r.content
                 else:
