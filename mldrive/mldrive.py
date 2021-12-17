@@ -97,11 +97,11 @@ class mldrive:
             :return: Model
             """
             try:
-                r = requests.get('http://34.231.99.140/api/load_model/{}/{}'.format(email,key)).content
+                r = requests.get('http://34.231.99.140/api/load_model/{}/{}'.format(email,key))
                 if r.status_code != 200:
                     return r.content
                 else:
-                    return pickle.loads(r)
+                    return pickle.loads(r.content)
             except Exception as exception:
                 return exception
 
@@ -173,11 +173,11 @@ class mldrive:
             :return: model (model)
             """
             try:
-                r = requests.get('http://34.231.99.140/api/model_inbox/{}/{}'.format(email,key)).content
+                r = requests.get('http://34.231.99.140/api/model_inbox/{}/{}'.format(email,key))
                 if r.status_code != 200:
                     return r.content
                 else:
-                    return pickle.loads(r)
+                    return pickle.loads(r.content)
             except Exception as exception:
                 return exception
             
