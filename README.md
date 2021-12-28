@@ -28,9 +28,9 @@ You can also send DataFrames and models to other users.
 The point is to give a cloud solution for machine learning projects. The goal is to minimize the need to download datasets from the internet as .csv files before having the ability to access them. The same mindset pertains towards
 having to save your work back to a .csv file. You can now just save your dataframe as is and access it from different runtimes, computers, etc... 
 
-![Dataset to Dataframe](./example/example.pdf)
+![Dataset to Dataframe](./example/ex.png)
 <p align="right">
-<sub>(Preview)</sub>
+<sub>(Example)</sub>
 </p>
 </td>
 </tr>
