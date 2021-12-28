@@ -8,7 +8,7 @@
 <p align="center">
   <a href="#about">About</a> •
   <a href="#installation">Installation</a> •
-  <a href="#wiki">Documentation</a> •
+  <a href="#documentation">Documentation</a> •
   <a href="#contributing">Contributing</a> •
   <a href="#support">Support</a> •
 </p>
@@ -39,12 +39,12 @@ having to save your work back to a .csv file. You can now just save your datafra
 ## Installation
 
 ##### Downloading and installing steps:
-* **[pip install mlDrive](https://pypi.org/project/mldrive/)** the latest version of the package.
+* **[pip install mlDrive](https://pypi.org/project/mldrive/)**.
 
 
 ## Documentation
 
-Do you **need some help**? [wiki](https://mldrive.io/documentation).
+Do you **need some help**? [documentation](https://mldrive.io/documentation).
 
 ## Contributing
 
