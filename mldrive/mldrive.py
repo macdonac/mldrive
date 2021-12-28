@@ -18,7 +18,7 @@ class mldrive:
             :return:  data from given endpoint
             """
             try:
-                r = requests.get('https://mldrive.io/api/' + endpoint + '/' + key)
+                r = requests.get('https://mldrive.io/api/{}/{}'.format(endpoint, key)
                 if r.status_code != 200:
                     return r.content
                 elif return_type == None:
@@ -41,9 +41,9 @@ class mldrive:
 
             try:
                 if type(data) == list:
-                        r = requests.post('https://mldrive.io/api/save_dataset/'+email+'/'+key, json=data)
+                        r = requests.post('https://mldrive.io/api/save_dataset/{}/{}'.format(email,key), json=data)
                 else:
-                        r = requests.post('https://mldrive.io/api/save_dataset/'+email+'/'+key, json=data.to_dict(orient='records') )    
+                        r = requests.post('https://mldrive.io/api/save_dataset/{}/{}'.format(email,key), json=data.to_dict(orient='records') )    
 
                 if r.status_code != 200:
                     return r.content
@@ -62,7 +62,7 @@ class mldrive:
             :return: dataframe
             """
             try:
-                r = requests.get('https://mldrive.io/api/get_dataset/'+email+'/'+key)
+                r = requests.get('https://mldrive.io/api/get_dataset/{}/{}'.format(email,key))
                 if r.status_code != 200:
                     return r.content
                 else:
