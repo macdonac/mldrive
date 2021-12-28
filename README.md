@@ -28,7 +28,7 @@ You can also send DataFrames and models to other users.
 The point is to give a cloud solution for machine learning projects. The goal is to minimize the need to download datasets from the internet as .csv files before having the ability to access them. The same mindset pertains towards
 having to save your work back to a .csv file. You can now just save your dataframe as is and access it from different runtimes, computers, etc... 
 
-![Dataset to Dataframe](https://github.com/macdonac/mldrive/blob/main/example/example.pdf)
+![Dataset to Dataframe](./example/example.pdf)
 <p align="right">
 <sub>(Preview)</sub>
 </p>
@@ -38,7 +38,7 @@ having to save your work back to a .csv file. You can now just save your datafra
 
 ## Installation
 
-##### Downloading and installing steps:
+##### Downloading:
 * **[pip install mlDrive](https://pypi.org/project/mldrive/)**.
 
 
@@ -49,7 +49,7 @@ Do you **need some help**? [documentation](https://mldrive.io/documentation).
 ## Contributing
 
 Got **something interesting** you'd like to **share**? Open an issue or shoot us an email.
-                                 |
+ 
 
 ## Support
 
