@@ -18,7 +18,7 @@ class mldrive:
             :return:  data from given endpoint
             """
             try:
-                r = requests.get('https://mldrive.io/api/{}/{}'.format(endpoint, key)
+                r = requests.get('https://mldrive.io/api/{}/{}'.format(endpoint, key))
                 if r.status_code != 200:
                     return r.content
                 elif return_type == None:
