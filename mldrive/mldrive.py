@@ -22,16 +22,16 @@ class mldrive:
                 if r.status_code != 200:
                     return r.content
                 elif return_type == None:
-                    return pd.read_json(r.json()['result'])
+                    return pd.read_json(list(r.json().values())[0])
                 elif return_type.lower() == 'array':
-                    return pd.read_json(r.json()['result']).to_numpy()
+                    return pd.read_json(list(r.json().values())[0]).to_numpy()
                 elif return_type.lower() == 'dict':
-                    return pd.read_json(r.json()['result']).to_dict()
+                    return pd.read_json(list(r.json().values())[0]).to_dict()
             except Exception as exception:
                 return exception
 
         def save_data(data, email, key):
-            """Save the given dataframe to the server.  Note, your previously saved dataset will be overwritten.  
+            """Save the given data to the server.  Note, your previously saved dataset will be overwritten.  
 
             :param df: dataframe that is being saved (dataframe)
             :param email: email used for registration that corresponds with API key (string)
@@ -106,7 +106,7 @@ class mldrive:
                 return exception
 
         def send_data(email,key,exchange_key, df):
-            """Send your dataframe to another user via their exchange_key
+            """Send your data to another user via their exchange_key
 
             :param email: the recipients email  (string)
             :param key:  your API key (string)
@@ -131,7 +131,7 @@ class mldrive:
                 return exception
 
         def dataset_inbox(email, key):
-            """Load dataframes that were sent to your inbox.
+            """Load data that were sent to your inbox.
 
             :param email: email used for registration that corresponds with API key (string)
             :param key:  your API key (string)
