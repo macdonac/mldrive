@@ -30,6 +30,24 @@ class mldrive:
             except Exception as exception:
                 return exception
 
+        def all_datasets(key):
+            """Retrieve all datasets. The return is a list of dataframes. 
+
+            :param key:  your API key (string)
+            :return: a list of pandas dataframes.
+            """
+            try:
+                r = requests.get('https://mldrive.io/api/all/{}'.format(key))
+                dfs = []
+                for i in range(len(list(r.json().values())[0])):
+                    dfs.append(pd.read_json(list(r.json().values())[0][i]))
+                if r.status_code != 200:
+                    return r.content
+                else:
+                    return dfs
+            except Exception as exception:
+                return exception        
+            
         def save_data(data, email, key):
             """Save the given data to the server.  Note, your previously saved dataset will be overwritten.  
 
