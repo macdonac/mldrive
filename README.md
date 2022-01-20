@@ -29,6 +29,13 @@ The mlDrive API additionally hosts a variety of easily accessible datasets: with
 
 Our overall intention is for mlDrive to be an **easy-to-use, cloud-based solution for common inefficiencies in machine learning projects**. By minimizing the need to download & upload datasets, we hope to increase both the quality of life and productivity of machine learning developers everywhere.
 
+## Installation
+
+##### Downloading:
+* Simply run **[pip install mlDrive](https://pypi.org/project/mldrive/)** from the command line.
+##### Registration:
+* Go to the **[mlDrive website](https://mldrive.io)** and follow the registration instructions to get your API key.
+
 ## A Few Examples:
 
 1. Users can pull clean, non-trivial **sample datasets** from our database in an instant using the get_dataset() method, as seen below.
@@ -40,19 +47,19 @@ Our overall intention is for mlDrive to be an **easy-to-use, cloud-based solutio
 2. Users can save and load their own datasets using the save_data() and get_my_data() methods, respectively.
 Note: We currently only support a single "save slot" per user, however we will eventually support multiple save slots.
 
-![Load Change Save Load](./example/ex.png)
+![Load Change Save Load](./example/save_data.png)
 <p align="right">
 <sub>The default return type is a pandas DataFrame.</sub>
 
-3. Users can send datasets to other mlDrive users using the send_dataset() method and their given exchange key.
+3. Users can send datasets to other mlDrive users using the send_dataset() method and their given exchange key. To send a dataset to another user, you will need to have their exchange key:
 
-![Sending Dataframe](./example/ex.png)
+![Get Exchange Keys](./example/save_keys.png)
 <p align="right">
 <sub>The default return type is a pandas DataFrame.</sub>
 
-4. Users can check their dataset inbox to interact with data that has been sent to them via the dataset_inbox() method.
+Users can also check their dataset inbox to interact with data that has been sent to them via the dataset_inbox() method:
 
-![Check Inbox Load Dataframe](./example/ex.png)
+![Sending/Recieving Dataframes](./example/send_data.png)
 <p align="right">
 <sub>The default return type is a pandas DataFrame.</sub>
 
@@ -60,12 +67,6 @@ Note: We currently only support a single "save slot" per user, however we will e
 </td>
 </tr>
 </table>
-
-## Installation
-
-##### Downloading:
-* Simply run **[pip install mlDrive](https://pypi.org/project/mldrive/)** from the command line.
-
 
 ## Documentation
 
