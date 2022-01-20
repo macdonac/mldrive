@@ -49,19 +49,19 @@ Note: We currently only support a single "save slot" per user, however we will e
 
 ![Load Change Save Load](./example/save_data.png)
 <p align="right">
-<sub>The default return type is a pandas DataFrame.</sub>
+<sub></sub>
 
 3. Users can send datasets to other mlDrive users using the send_dataset() method and their given exchange key. To send a dataset to another user, you will need to have their exchange key:
 
 ![Get Exchange Keys](./example/save_keys.png)
 <p align="right">
-<sub>The default return type is a pandas DataFrame.</sub>
+<sub></sub>
 
 Users can also check their dataset inbox to interact with data that has been sent to them via the dataset_inbox() method:
 
 ![Sending/Recieving Dataframes](./example/send_data.png)
 <p align="right">
-<sub>The default return type is a pandas DataFrame.</sub>
+<sub></sub>
 
 </p>
 </td>
